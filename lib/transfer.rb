@@ -18,9 +18,13 @@ class Transfer
     if sender.balance > amount && status == "pending"
       sender.balance -= amount; receiver.balance += amount; @status = "complete"
     else
-      @status = "rejected"
-      return "Transaction rejected. Please check your account balance."
+      reject_transfer
     end
+  end
+  
+  def reject_transfer
+    @status = "rejected"
+    "Transaction rejected. Please check your account balance."
   end
   
   def reverse_transfer
